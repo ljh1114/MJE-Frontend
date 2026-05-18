@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { trackCloseClick, trackCopyLinkClick } from "./event_tracking";
+import { trackShareCloseClick, trackCopyLinkClick } from "./event_tracking";
 
 const pretendard = "'Pretendard Variable', Pretendard, sans-serif";
 
@@ -34,7 +34,7 @@ export default function ExportEmailModal({
   };
 
   const handleCloseButton = () => {
-    void trackCloseClick(courseId, courseTitle);
+    void trackShareCloseClick(courseId, courseTitle);
     onClose();
   };
 
