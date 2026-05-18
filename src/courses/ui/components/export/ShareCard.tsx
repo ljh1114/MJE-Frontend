@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import ShareEmailModal from "./ShareEmailModal";
+import { trackShareClick } from "./event_tracking";
 
 const pretendard = "'Pretendard Variable', Pretendard, sans-serif";
 const prompt = "'Prompt', sans-serif";
@@ -26,6 +27,11 @@ interface ShareCardProps {
 export default function ExportCard({ courseTitle, courseId }: ShareCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const handleShareClick = () => {
+    void trackShareClick(courseId, courseTitle);
+    setIsModalOpen(true);
+  };
+
   return (
     <>
       <div className="w-full rounded-[30px] bg-white px-[17px] py-[15px] shadow-[3px_6px_10px_rgba(187,199,211,0.57)]">
@@ -36,7 +42,7 @@ export default function ExportCard({ courseTitle, courseId }: ShareCardProps) {
           <div className="flex w-full flex-col items-center gap-[7px]">
             <button
               type="button"
-              onClick={() => setIsModalOpen(true)}
+              onClick={handleShareClick}
               className="flex h-[44px] w-full items-center justify-center gap-[8px] rounded-full bg-[#333] shadow-[3px_6px_10px_rgba(187,199,211,0.25)] transition-opacity hover:opacity-80"
             >
               <ShareIcon />
