@@ -81,7 +81,7 @@ export default function CourseDetailPage({
             return;
         }
 
-        const label = getCourseLabel(course.id);
+        const label = getCourseLabel(course.id, course.courseType);
         const gradeParam = label === "Best Course !" ? "best" : label === "Option A" ? "optional_a" : "optional_b";
         trackOptionCardClick();
         router.push(`/courses/detail/${course.id}?grade=${gradeParam}`);
@@ -113,12 +113,12 @@ export default function CourseDetailPage({
         ? (transportLabelMap[resolvedTransport] ?? resolvedTransport)
         : undefined;
 
-    const getCourseLabel = (id: string): "Best Course !" | "Option A" | "Option B" => {
+    const getCourseLabel = (id: string, fallbackCourseType?: string): "Best Course !" | "Option A" | "Option B" => {
         if (data?.mainCourse?.id === id) return "Best Course !";
         const subIndex = data?.subCourses.findIndex((c) => c.id === id) ?? -1;
         if (subIndex === 0) return "Option A";
         if (subIndex === 1) return "Option B";
-        return "Best Course !";
+        return labelFromCourseType(fallbackCourseType);
     };
 
     const fallbackAlternatives =
@@ -218,7 +218,7 @@ export default function CourseDetailPage({
                                     <OtherCourseCard
                                         key={course.id || `alternative-course-${index}`}
                                         course={course}
-                                        label={getCourseLabel(course.id)}
+                                        label={getCourseLabel(course.id, course.courseType)}
                                         onClick={handleOtherCourseClick}
                                     />
                                 ))}
