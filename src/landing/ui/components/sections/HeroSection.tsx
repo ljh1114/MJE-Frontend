@@ -116,6 +116,34 @@ function StatEllipses() {
   );
 }
 
+/**
+ * 픽셀 아트 핑크 하트 아이콘 (원본 Figma의 Group / Group69)
+ * 4행 × 5열 그리드에 11개의 2.985×2.985px 핑크 사각형.
+ */
+function PixelHeart({ baseY }: { baseY: number }) {
+  const baseX = 130;
+  const cell = 2.985;
+  // [col, row] — col 0~4, row 0~3
+  const pixels: ReadonlyArray<readonly [number, number]> = [
+    [1, 0], [3, 0],
+    [0, 1], [1, 1], [2, 1], [3, 1], [4, 1],
+    [1, 2], [2, 2], [3, 2],
+    [2, 3],
+  ];
+
+  return (
+    <>
+      {pixels.map(([col, row], i) => (
+        <div
+          key={i}
+          className="absolute bg-[#fcad9e] border-[#d5d5d5] border-[0.1px] border-solid size-[2.985px]"
+          style={{ left: baseX + col * cell, top: baseY + row * cell }}
+        />
+      ))}
+    </>
+  );
+}
+
 function Stars() {
   return (
     <>
@@ -140,18 +168,18 @@ function Stars() {
 
 function ScrollDownIndicator() {
   return (
-    <>
-      <p className="-translate-x-1/2 [word-break:break-word] absolute font-['Prompt:Regular',sans-serif] leading-[normal] left-[730.92px] not-italic text-[#7a8290] text-[14.555px] text-center top-[787.53px] whitespace-nowrap">Scroll Down</p>
-      <div className="absolute flex inset-[17.06%_52.82%_82.54%_45.91%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-45 flex-none h-[hypot(50cqw,50cqh)] w-[hypot(50cqw,-50cqh)]">
-          <div className="relative size-full">
-            <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 12.9381 12.9381">
-              <path d={svgPaths.p1c3f1200} fill="#7A8290" />
-            </svg>
-          </div>
-        </div>
+    <div className="-translate-x-1/2 absolute left-1/2 top-[787.53px]">
+      <div className="animate-float-y flex items-center gap-[6px]">
+        <span className="block size-[13.18px] -rotate-45">
+          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 12.9381 12.9381">
+            <path d={svgPaths.p1c3f1200} fill="#7A8290" />
+          </svg>
+        </span>
+        <p className="font-['Prompt:Regular',sans-serif] leading-none not-italic text-[#7a8290] text-[14.555px] whitespace-nowrap">
+          Scroll Down
+        </p>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -166,10 +194,12 @@ export default function HeroSection() {
       <LandingNavbar />
       {/* Light-blue highlight under sub-copy */}
       <div className="-translate-x-1/2 absolute bg-[#d5e6f6] h-[13.861px] left-[calc(50%-421.46px)] top-[254.12px] w-[337.083px]" />
-      {/* Sub-copy under main heading */}
+      {/* Sub-copy under main heading — 각 줄 앞에 픽셀 하트 아이콘 */}
+      <PixelHeart baseY={448.5} />
       <p className="[word-break:break-word] absolute font-['Prompt:Regular','Noto_Sans_KR:Regular',sans-serif] leading-[22px] left-[calc(50%-562.64px)] text-[#797979] text-[15px] top-[443.47px] whitespace-nowrap" style={{ fontVariationSettings: "'wght' 400" }}>
         맛집·카페·놀거리까지 한 번에
       </p>
+      <PixelHeart baseY={475.63} />
       <p className="[word-break:break-word] absolute font-['Prompt:Regular','Noto_Sans_KR:Regular',sans-serif] leading-[22px] left-[calc(50%-562.64px)] text-[#797979] text-[15px] top-[470.6px] whitespace-nowrap" style={{ fontVariationSettings: "'wght' 400" }}>
         원하는 조건 3가지만 입력하면 데이트 준비 끝
       </p>
