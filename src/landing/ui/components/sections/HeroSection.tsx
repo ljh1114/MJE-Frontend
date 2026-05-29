@@ -1,5 +1,7 @@
 import svgPaths from "@/landing/ui/components/assets/svgPaths";
-import { imgHeroOverlay, imgLogo1102 } from "@/landing/ui/components/assets/images";
+import { imgHeroOverlay } from "@/landing/ui/components/assets/images";
+import LandingNavbar from "@/landing/ui/components/sections/LandingNavbar";
+import HeroCtaButton from "@/landing/ui/components/sections/HeroCtaButton";
 
 function DecorativeBlobs() {
   return (
@@ -29,51 +31,6 @@ function DecorativeBlobs() {
         </svg>
       </div>
     </div>
-  );
-}
-
-function Navbar() {
-  return (
-    <>
-      <div className="absolute bg-white border-[#d7d7d7] border-b-[1.5px] border-solid h-[73.622px] left-0 top-0 w-[1440px]" />
-      <div className="absolute h-0 left-[281.89px] top-[73.62px] w-[49.241px]">
-        <div className="absolute inset-[-2px_0_0_0]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 49.2406 2">
-            <line stroke="black" strokeWidth="2" x2="49.2406" y1="1" y2="1" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute bg-[#333] h-[41.802px] left-[1283.99px] rounded-[20.901px] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.25)] top-[15.91px] w-[106.012px]" />
-      <p className="-translate-x-1/2 [word-break:break-word] absolute font-['Prompt:Regular',sans-serif] leading-[22px] left-[1337.49px] not-italic text-[12px] text-center text-white top-[25.81px] whitespace-nowrap">Get Started</p>
-      <p className="-translate-x-1/2 [word-break:break-word] absolute font-['Prompt:Regular',sans-serif] leading-[normal] left-[calc(50%-413.91px)] not-italic text-[17px] text-black text-center top-[26.81px] whitespace-nowrap">Home</p>
-      <div className="absolute h-[29.264px] left-[50px] top-[25.18px] w-[141.492px]">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgLogo1102} />
-      </div>
-    </>
-  );
-}
-
-function CtaButton() {
-  return (
-    <>
-      <div className="absolute h-[44.184px] left-[130px] rounded-[22.092px] top-[599.21px] w-[271.569px]" style={{ backgroundImage: "linear-gradient(109.889deg, rgba(138, 175, 230, 0.74) 3.3578%, rgba(213, 230, 246, 0.74) 104.08%)" }} />
-      <div className="absolute bg-[rgba(255,255,255,0.1)] h-[44.184px] left-[130px] rounded-[22.092px] shadow-[0px_3px_17.1px_0px_rgba(255,255,255,0.7)] top-[599.21px] w-[271.569px]" />
-      <p className="[word-break:break-word] absolute font-['Prompt:Medium','Noto_Sans_KR:Medium',sans-serif] leading-[22px] left-[183.84px] text-[#2a4874] text-[16px] top-[611.3px] whitespace-nowrap" style={{ fontVariationSettings: "'wght' 500" }}>
-        데이트 코스 만들기 !
-      </p>
-      <div className="absolute left-[327.78px] size-[19.943px] top-[612.33px]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 19.9434 19.9434">
-          <g>
-            <mask height="20" id="mask_arrow_right" maskUnits="userSpaceOnUse" style={{ maskType: "alpha" }} width="20" x="0" y="0">
-              <rect fill="#D9D9D9" height="19.9434" width="19.9434" />
-            </mask>
-            <g mask="url(#mask_arrow_right)">
-              <path d={svgPaths.pde23d00} fill="#2A4874" />
-            </g>
-          </g>
-        </svg>
-      </div>
-    </>
   );
 }
 
@@ -159,6 +116,34 @@ function StatEllipses() {
   );
 }
 
+/**
+ * 픽셀 아트 핑크 하트 아이콘 (원본 Figma의 Group / Group69)
+ * 4행 × 5열 그리드에 11개의 2.985×2.985px 핑크 사각형.
+ */
+function PixelHeart({ baseY }: { baseY: number }) {
+  const baseX = 130;
+  const cell = 2.985;
+  // [col, row] — col 0~4, row 0~3
+  const pixels: ReadonlyArray<readonly [number, number]> = [
+    [1, 0], [3, 0],
+    [0, 1], [1, 1], [2, 1], [3, 1], [4, 1],
+    [1, 2], [2, 2], [3, 2],
+    [2, 3],
+  ];
+
+  return (
+    <>
+      {pixels.map(([col, row], i) => (
+        <div
+          key={i}
+          className="absolute bg-[#fcad9e] border-[#d5d5d5] border-[0.1px] border-solid size-[2.985px]"
+          style={{ left: baseX + col * cell, top: baseY + row * cell }}
+        />
+      ))}
+    </>
+  );
+}
+
 function Stars() {
   return (
     <>
@@ -183,18 +168,18 @@ function Stars() {
 
 function ScrollDownIndicator() {
   return (
-    <>
-      <p className="-translate-x-1/2 [word-break:break-word] absolute font-['Prompt:Regular',sans-serif] leading-[normal] left-[730.92px] not-italic text-[#7a8290] text-[14.555px] text-center top-[787.53px] whitespace-nowrap">Scroll Down</p>
-      <div className="absolute flex inset-[17.06%_52.82%_82.54%_45.91%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-45 flex-none h-[hypot(50cqw,50cqh)] w-[hypot(50cqw,-50cqh)]">
-          <div className="relative size-full">
-            <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 12.9381 12.9381">
-              <path d={svgPaths.p1c3f1200} fill="#7A8290" />
-            </svg>
-          </div>
-        </div>
+    <div className="-translate-x-1/2 absolute left-1/2 top-[787.53px]">
+      <div className="animate-float-y flex items-center gap-[6px]">
+        <span className="block size-[13.18px] -rotate-45">
+          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 12.9381 12.9381">
+            <path d={svgPaths.p1c3f1200} fill="#7A8290" />
+          </svg>
+        </span>
+        <p className="font-['Prompt:Regular',sans-serif] leading-none not-italic text-[#7a8290] text-[14.555px] whitespace-nowrap">
+          Scroll Down
+        </p>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -206,13 +191,15 @@ export default function HeroSection() {
       <div className="-translate-x-1/2 absolute h-[849.985px] left-1/2 top-0 w-[1501.959px]">
         <img alt="" className="absolute inset-0 max-w-none mix-blend-overlay object-cover pointer-events-none size-full" src={imgHeroOverlay} />
       </div>
-      <Navbar />
+      <LandingNavbar />
       {/* Light-blue highlight under sub-copy */}
       <div className="-translate-x-1/2 absolute bg-[#d5e6f6] h-[13.861px] left-[calc(50%-421.46px)] top-[254.12px] w-[337.083px]" />
-      {/* Sub-copy under main heading */}
+      {/* Sub-copy under main heading — 각 줄 앞에 픽셀 하트 아이콘 */}
+      <PixelHeart baseY={448.5} />
       <p className="[word-break:break-word] absolute font-['Prompt:Regular','Noto_Sans_KR:Regular',sans-serif] leading-[22px] left-[calc(50%-562.64px)] text-[#797979] text-[15px] top-[443.47px] whitespace-nowrap" style={{ fontVariationSettings: "'wght' 400" }}>
         맛집·카페·놀거리까지 한 번에
       </p>
+      <PixelHeart baseY={475.63} />
       <p className="[word-break:break-word] absolute font-['Prompt:Regular','Noto_Sans_KR:Regular',sans-serif] leading-[22px] left-[calc(50%-562.64px)] text-[#797979] text-[15px] top-[470.6px] whitespace-nowrap" style={{ fontVariationSettings: "'wght' 400" }}>
         원하는 조건 3가지만 입력하면 데이트 준비 끝
       </p>
@@ -220,7 +207,7 @@ export default function HeroSection() {
       <p className="[word-break:break-word] absolute font-['Prompt:Regular','Noto_Sans_KR:Regular',sans-serif] leading-[22px] left-[135.99px] text-[#333] text-[20px] top-[246.12px] whitespace-nowrap" style={{ fontVariationSettings: "'wght' 400" }}>
         데이트코스 고민 30분, 이제 30초로 !
       </p>
-      <CtaButton />
+      <HeroCtaButton />
       {/* Main heading */}
       <div className="[word-break:break-word] absolute font-['Pretendard:SemiBold',sans-serif] leading-[0] left-[calc(50%-590px)] not-italic text-[0px] text-black top-[292.11px] whitespace-nowrap">
         <p className="leading-[normal] mb-0 text-[#2a4874] text-[40px]">데이트코스 계획이 어려운 커플들을 위한</p>

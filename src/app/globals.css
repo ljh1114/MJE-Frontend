@@ -46,12 +46,20 @@ body {
   }
 }
 
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
 @layer utilities {
   .animate-shake {
     animation: shake 0.4s ease-in-out;
   }
   .animate-dropdown-open {
     animation: dropdownOpen 0.18s ease-out forwards;
+  }
+  .animate-float-y {
+    animation: floatY 2.2s ease-in-out infinite;
   }
   .scrollbar-hide {
     scrollbar-width: none;

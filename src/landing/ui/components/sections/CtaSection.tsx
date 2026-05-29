@@ -1,6 +1,7 @@
 import svgPaths from "@/landing/ui/components/assets/svgPaths";
 import { imgImage186, imgImage187 } from "@/landing/ui/components/assets/svgImages";
 import { imgImage188, imgObject, imgObject1 } from "@/landing/ui/components/assets/images";
+import BottomCtaButton from "@/landing/ui/components/sections/BottomCtaButton";
 
 function CozyCafeTag() {
   return (
@@ -76,43 +77,6 @@ function HotSpotsTag() {
         </div>
       </div>
     </div>
-  );
-}
-
-function FinalCtaButton() {
-  return (
-    <>
-      {/* Pill background */}
-      <div className="-translate-x-1/2 absolute contents left-1/2 top-[3673.41px]">
-        <div className="-translate-x-1/2 absolute bg-[#333] h-[59.371px] left-1/2 rounded-[45.361px] top-[3678.41px] w-[309.919px]" />
-        <div className="-translate-x-1/2 absolute border border-black border-solid h-[69.37px] left-1/2 rounded-[34.685px] shadow-[0px_3px_10.9px_0px_rgba(0,0,0,0.22)] top-[3673.41px] w-[319.69px]" />
-      </div>
-      {/* Text + arrow */}
-      <div className="-translate-x-1/2 absolute contents left-[calc(50%+1px)] top-[3692.67px]">
-        <p
-          className="-translate-x-1/2 [word-break:break-word] absolute font-['Prompt:Regular','Noto_Sans_KR:Regular',sans-serif] leading-[25px] left-[697.69px] text-[20px] text-center text-white top-[3695.6px] whitespace-nowrap"
-          style={{ fontVariationSettings: "'wght' 400" }}
-        >
-          데이트 코스 만들러가기
-        </p>
-        <div className="absolute flex items-center justify-center left-[812.96px] size-[30.849px] top-[3692.67px]">
-          <div className="flex-none rotate-[-90.29deg]">
-            <div className="relative size-[30.696px]">
-              <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 30.6956 30.6956">
-                <g>
-                  <mask height="31" id="mask0_ctadown" maskUnits="userSpaceOnUse" style={{ maskType: "alpha" }} width="31" x="0" y="0">
-                    <rect fill="#D9D9D9" height="30.1956" stroke="#333333" strokeWidth="0.5" width="30.1956" x="0.25" y="0.25" />
-                  </mask>
-                  <g mask="url(#mask0_ctadown)">
-                    <path d={svgPaths.p33357600} fill="white" stroke="#333333" strokeWidth="0.5" />
-                  </g>
-                </g>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
   );
 }
 
@@ -219,7 +183,7 @@ export default function CtaSection() {
       <HotSpotsTag />
 
       {/* Final CTA button */}
-      <FinalCtaButton />
+      <BottomCtaButton />
 
       {/* Small gray square at bottom-right (off-canvas anchor) */}
       <div className="absolute bg-[#d9d9d9] left-[1571.33px] size-[28.86px] top-[4662.91px]" />
